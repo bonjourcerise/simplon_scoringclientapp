@@ -5,9 +5,7 @@ import time
 import pickle
 import matplotlib.pyplot as plt
 import numpy as np
-import plotly.express as px
-import plotly.figure_factory as ff
-import plotly.graph_objects as go
+
 # config
 st.set_page_config(page_title="Ai Credit Bank App", page_icon=":dollar:")
 
