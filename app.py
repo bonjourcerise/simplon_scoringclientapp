@@ -37,6 +37,7 @@ st.info("Welcome here !  Fill the fields in Genius App and hop, you can predict 
 
 #metrics
 kpi_income = df['AMT_INCOME_TOTAL'].mean()
+kpi_income = int(kpi_income)
 kpi_client= len(df.index)
 kpi_married = df['NAME_FAMILY_STATUS'].value_counts().Married
 col1, col2, col3 = st.columns(3)
