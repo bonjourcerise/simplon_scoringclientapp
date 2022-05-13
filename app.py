@@ -49,7 +49,6 @@ col3.metric(label="Married count 💍", value=kpi_married)
 # config plotly colors
 px.defaults.color_continuous_scale = px.colors.sequential.Purp
 
-
 # viz 1
 st.subheader("Education")
 df_fig1 = df['NAME_EDUCATION_TYPE'].value_counts()
