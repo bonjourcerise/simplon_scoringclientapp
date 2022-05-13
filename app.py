@@ -77,12 +77,16 @@ if st.sidebar.button("Submit & Predict"):
     with st.spinner('Tic tac, please wait'):
         time.sleep(10)
     
-# store inputs into dataframe
-X = pd.DataFrame([[gender, age, family_status,child,income,type_contract,credit,education,metier]], 
-columns = ["CODE_GENDER", "DAYS_BIRTH", "NAME_FAMILY_STATUS","CNT_CHILDREN", "AMT_INCOME_TOTAL","NAME_CONTRACT_TYPE", "AMT_CREDIT", "NAME_EDUCATION_TYPE", "OCCUPATION_TYPE"])
-# get pred
-prediction = model_app.predict(X)
+        # store inputs into dataframe
+        X = pd.DataFrame([[gender, age, family_status,child,income,type_contract,credit,education,metier]], 
+        columns = ["CODE_GENDER", "DAYS_BIRTH", "NAME_FAMILY_STATUS","CNT_CHILDREN", "AMT_INCOME_TOTAL","NAME_CONTRACT_TYPE", "AMT_CREDIT", "NAME_EDUCATION_TYPE", "OCCUPATION_TYPE"])
+        # get pred
+        prediction = model_app.predict(X)
 
-# output pred
-st.sidebar.text(f"Score : {prediction}")
-st.sidebar.success('The credit will be {}'.format(prediction_status(prediction)))
+        # output pred
+        if  prediction_status(prediction) == 'rejected':
+            st.sidebar.text(f"Score : {prediction}")
+            st.sidebar.error('The credit will be {}'.format(prediction_status(prediction)))
+        else:
+            st.sidebar.text(f"Score : {prediction}")
+            st.sidebar.success('The credit will be {}'.format(prediction_status(prediction)))
