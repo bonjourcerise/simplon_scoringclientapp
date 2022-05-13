@@ -41,7 +41,7 @@ kpi_income = int(kpi_income)
 kpi_client= len(df.index)
 kpi_married = df['NAME_FAMILY_STATUS'].value_counts().Married
 col1, col2, col3 = st.columns(3)
-col1.metric(label="Outcome annual avg 💵", value=kpi_income)
+col1.metric(label="Outcome annual mean ($) 💵", value=kpi_income)
 col2.metric(label="Clients number 🧑", value=kpi_client)
 col3.metric(label="Married count 💍", value=kpi_married)
 
