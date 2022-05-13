@@ -36,6 +36,7 @@ st.title("AI Credit Bank 💰")
 st.info("Welcome here !  Fill the fields in Genius App and hop, you can predict if your customer will have payment difficulties on a credit. You will also find statistics in the dashboard.")
 
 #metrics
+st.subheader("Statistics")
 kpi_income = df['AMT_INCOME_TOTAL'].mean()
 kpi_income = int(kpi_income)
 kpi_client= len(df.index)
@@ -45,16 +46,29 @@ col1.metric(label="Outcome annual mean ($) 💵", value=kpi_income)
 col2.metric(label="Clients number 🧑", value=kpi_client)
 col3.metric(label="Married count 💍", value=kpi_married)
 
+# config plotly colors
+px.defaults.color_continuous_scale = px.colors.sequential.Purp
+
 
 # viz 1
-fig = px.bar(df, x="NAME_EDUCATION_TYPE", color="NAME_EDUCATION_TYPE",color_discrete_sequence=px.colors.sequential.Purp,
-labels={"NAME_EDUCATION_TYPE": "Education","count": "Nombre de clients"},title="Education")
+st.subheader("Education")
+df_fig1 = df['NAME_EDUCATION_TYPE'].value_counts()
+fig = px.bar(df_fig1, y="NAME_EDUCATION_TYPE", color="NAME_EDUCATION_TYPE", labels={"NAME_EDUCATION_TYPE": "Number of clients","index": "Education type"})
 fig.update_layout(barmode="stack", xaxis={"categoryorder": "total descending"})
 st.plotly_chart(fig)
 
 # viz 2
-fig = px.bar(df, y="NAME_FAMILY_STATUS", color="NAME_FAMILY_STATUS",color_discrete_sequence=px.colors.sequential.Purp, title="Status familial")
+st.subheader("Family Status")
+df_fig2 = df["NAME_FAMILY_STATUS"].value_counts()
+fig = px.bar(df_fig2, x="NAME_FAMILY_STATUS",color="NAME_FAMILY_STATUS", labels={"NAME_FAMILY_STATUS": "Number of clients","index": "Family Status"})
 fig.update_layout(barmode="stack", xaxis={"categoryorder": "total descending"})
+st.plotly_chart(fig)
+
+# viz 3
+st.subheader("Gender")
+st.markdown("Men : 66% - Women : 34%")
+df_fig3 = df["CODE_GENDER"].value_counts()
+fig = px.pie(df_fig3, values='CODE_GENDER', color_discrete_sequence=px.colors.sequential.Purp)
 st.plotly_chart(fig)
 
 #sidebar
