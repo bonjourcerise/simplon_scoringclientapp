@@ -46,17 +46,13 @@ col3.metric(label="Married count 💍", value=kpi_married)
 
 
 # viz 1
-fig = px.bar(df, x="NAME_EDUCATION_TYPE", color="NAME_EDUCATION_TYPE",
-   color_discrete_sequence=px.colors.sequential.Purp,
-    labels={"NAME_EDUCATION_TYPE": "Education","count": "Nombre de clients"},
-    title="Education")
+fig = px.bar(df, x="NAME_EDUCATION_TYPE", color="NAME_EDUCATION_TYPE",color_discrete_sequence=px.colors.sequential.Purp,
+labels={"NAME_EDUCATION_TYPE": "Education","count": "Nombre de clients"},title="Education")
 fig.update_layout(barmode="stack", xaxis={"categoryorder": "total descending"})
 st.plotly_chart(fig)
 
 # viz 2
-fig = px.bar(df, y="NAME_FAMILY_STATUS", color="NAME_FAMILY_STATUS",
-color_discrete_sequence=px.colors.sequential.Purp,
-title="Status familial")
+fig = px.bar(df, y="NAME_FAMILY_STATUS", color="NAME_FAMILY_STATUS",color_discrete_sequence=px.colors.sequential.Purp, title="Status familial")
 fig.update_layout(barmode="stack", xaxis={"categoryorder": "total descending"})
 st.plotly_chart(fig)
 
@@ -87,5 +83,5 @@ columns = ["CODE_GENDER", "DAYS_BIRTH", "NAME_FAMILY_STATUS","CNT_CHILDREN", "AM
 prediction = model_app.predict(X)
 
 # output pred
-#st.sidebar.text(f"Score : {prediction}")
+st.sidebar.text(f"Score : {prediction}")
 st.sidebar.success('The credit will be {}'.format(prediction_status(prediction)))
